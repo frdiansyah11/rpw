@@ -86,7 +86,6 @@ public class MenuScreen implements Screen {
 
         game.batch.begin();
 
-
         //render Play Button
         int x = GDXRoot.WIDTH / 4 - PLAY_BUTTON_WIDTH / 2;
         if (game.cam.getInputGameWorld().x < x + PLAY_BUTTON_WIDTH && game.cam.getInputGameWorld().x > x && GDXRoot.HEIGHT - game.cam.getInputGameWorld().y < PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT && GDXRoot.HEIGHT - game.cam.getInputGameWorld().y > PLAY_BUTTON_Y) {

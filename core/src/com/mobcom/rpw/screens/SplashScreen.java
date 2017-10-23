@@ -38,7 +38,7 @@ public class SplashScreen implements Screen {
     @Override
     public void show() {
         //splash.setSize(GDXRoot.WIDTH/ 1.5f, GDXRoot.HEIGHT/2);
-        splash.setPosition(GDXRoot.WIDTH/2 - splash.getWidth()/2,GDXRoot.HEIGHT/2);
+        splash.setPosition(GDXRoot.WIDTH/2 - splash.getWidth()/2,GDXRoot.HEIGHT/2 - splash.getHeight()/2 + 30);
 
         Tween.registerAccessor(Sprite.class, new SpriteAccessor());
         Tween.set(splash, SpriteAccessor.ALPHA).target(0).start(tweenManager);

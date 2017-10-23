@@ -18,7 +18,6 @@ public class GDXRoot extends Game {
 		batch = new SpriteBatch();
 		cam = new GameCamera(WIDTH,HEIGHT);
 
-
 		this.setScreen(new SplashScreen(this));
 //		this.setScreen(new MenuScreen(this));
 	}
