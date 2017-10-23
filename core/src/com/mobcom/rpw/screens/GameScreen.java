@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.mobcom.rpw.GDXRoot;
+import com.mobcom.rpw.entities.Player;
 import com.mobcom.rpw.tools.ScrollingBackgroundHandle;
 
 /**
@@ -14,14 +15,16 @@ public class GameScreen implements Screen {
 
     GDXRoot game;
     ScrollingBackgroundHandle scrollingBackgroundHandle;
+    Player player;
 
     float backgroundTimer;
 
     public GameScreen(GDXRoot game){
         this.game = game;
         scrollingBackgroundHandle = new ScrollingBackgroundHandle();
-        backgroundTimer = 0;
+        player = new Player();
 
+        backgroundTimer = 0;
     }
 
 
@@ -38,6 +41,7 @@ public class GameScreen implements Screen {
         game.batch.begin();
 
         scrollingBackgroundHandle.updateAndRender(delta, game.batch);
+        player.render(delta, game.batch);
         //game.batch.draw(image,0,0);
         game.batch.end();
     }
