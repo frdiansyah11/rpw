@@ -38,6 +38,9 @@ public class MenuScreen implements Screen {
     Texture exitButtonInactive;
     Texture exitButtonActive;
 
+    //Sound sound;
+
+
     public MenuScreen(final GDXRoot game){
         this.game = game;
         logo1 = new Texture("logo_image.png");
@@ -48,6 +51,10 @@ public class MenuScreen implements Screen {
 
         exitButtonActive = new Texture("exit_active.png");
         exitButtonInactive = new Texture("exit_inactive.png");
+
+        //sound = Gdx.audio.newSound(Gdx.files.internal("sounds/ArcadeLogin.ogg"));
+
+
 
         final MenuScreen menuScreen = this;
 
@@ -77,6 +84,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
+
     }
 
     @Override

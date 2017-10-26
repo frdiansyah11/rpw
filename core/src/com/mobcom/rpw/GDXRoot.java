@@ -2,12 +2,12 @@ package com.mobcom.rpw;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mobcom.rpw.screens.SplashScreen;
+import com.mobcom.rpw.screens.GameScreen;
 import com.mobcom.rpw.tools.GameCamera;
 
 public class GDXRoot extends Game {
-	public static final int WIDTH = 720;
-	public static final int HEIGHT = 480;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 
 	public SpriteBatch batch;
 	public GameCamera cam;
@@ -18,8 +18,9 @@ public class GDXRoot extends Game {
 		batch = new SpriteBatch();
 		cam = new GameCamera(WIDTH,HEIGHT);
 
-		this.setScreen(new SplashScreen(this));
+		//this.setScreen(new SplashScreen(this));
 //		this.setScreen(new MenuScreen(this));
+        this.setScreen(new GameScreen(this));
 	}
 
 	@Override

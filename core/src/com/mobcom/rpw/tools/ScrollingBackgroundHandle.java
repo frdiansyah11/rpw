@@ -23,7 +23,7 @@ public class ScrollingBackgroundHandle {
     public ScrollingBackgroundHandle(){
 
         //Stage 1 - Jungle
-        background_stage1 = new Texture("example_jungle.jpg");
+        background_stage1 = new Texture("jungle.jpg");
         background_stage1.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         backgroundsprite_stage1 = new Sprite(background_stage1,0,0, GDXRoot.WIDTH + background_stage1.getWidth() ,background_stage1.getHeight());
         backgroundsprite_stage1.setSize(backgroundsprite_stage1.getWidth() + GDXRoot.WIDTH, GDXRoot.HEIGHT);
@@ -39,7 +39,7 @@ public class ScrollingBackgroundHandle {
         }
 
         backgroundsprite_stage1.setU(timer+1);
-        backgroundsprite_stage1.setU2(timer+5);
+        backgroundsprite_stage1.setU2(timer+3);
         backgroundsprite_stage1.draw(batch);
     }
 }
