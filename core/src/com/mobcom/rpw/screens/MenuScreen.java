@@ -3,6 +3,7 @@ package com.mobcom.rpw.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.mobcom.rpw.GDXRoot;
@@ -38,7 +39,7 @@ public class MenuScreen implements Screen {
     Texture exitButtonInactive;
     Texture exitButtonActive;
 
-    //Sound sound;
+    Sound sound;
 
 
     public MenuScreen(final GDXRoot game){
@@ -52,9 +53,10 @@ public class MenuScreen implements Screen {
         exitButtonActive = new Texture("exit_active.png");
         exitButtonInactive = new Texture("exit_inactive.png");
 
-        //sound = Gdx.audio.newSound(Gdx.files.internal("sounds/ArcadeLogin.ogg"));
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/ArcadeLogin.ogg"));
 
-
+        sound.setLooping(0,true);
+        sound.play();
 
         final MenuScreen menuScreen = this;
 
@@ -141,6 +143,11 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        logo1.dispose();
+        logo2.dispose();
+        playButtonInactive.dispose();
+        playButtonActive.dispose();
+        exitButtonActive.dispose();
+        exitButtonInactive.dispose();
     }
 }

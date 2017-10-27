@@ -11,9 +11,10 @@ public class Hole {
     public static final int SPEED = 250;
     public static final int HOLE_WIDTH = 80;
     public static final int HOLE_HEIGHT = 240;
+    public static final int HOLE_Y = 0;
     private static Texture img;
 
-    float x,y;
+    float x;
 
 
     public boolean remove = false;
@@ -33,6 +34,6 @@ public class Hole {
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(img, x, y, HOLE_WIDTH, HOLE_HEIGHT);
+        batch.draw(img, x, HOLE_Y, HOLE_WIDTH, HOLE_HEIGHT);
     }
 }

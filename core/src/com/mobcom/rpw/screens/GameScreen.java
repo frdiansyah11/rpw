@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mobcom.rpw.GDXRoot;
 import com.mobcom.rpw.entities.Ground;
 import com.mobcom.rpw.entities.Hole;
@@ -34,12 +37,21 @@ public class GameScreen implements Screen {
 
     Random random;
 
+    World world;
+
     Sound backSound;
+
+    private Box2DDebugRenderer box2DDebugRenderer;
 
     public GameScreen(GDXRoot game){
         this.game = game;
+
+        world = new World(new Vector2(0, -9.8f),true);
+
+        box2DDebugRenderer = new Box2DDebugRenderer();
+
         scrollingBackgroundHandle = new ScrollingBackgroundHandle();
-        player = new Player();
+        player = new Player(world);
         grounds = new ArrayList<Ground>();
         holes = new ArrayList<Hole>();
 
@@ -50,33 +62,40 @@ public class GameScreen implements Screen {
         groudSpawnTimer = 0;
 
         random = new Random();
+
+
+
+        //------------------ INITIATE -------------
+        backSound.setLooping(0,true);
+        backSound.play();
+
+        //initiate first grounds
+        for (int i = 0 ; i < 17 ; i++){
+            grounds.add(new Ground(ground_x + (Ground.GROUND_WIDTH * i), world));
+        }
     }
 
 
     @Override
     public void show() {
-        //backSound.play();
 
-        //initiate first grounds
-        for (int i = 0 ; i < 17 ; i++){
-            grounds.add(new Ground(ground_x + (Ground.GROUND_WIDTH * i)));
-        }
     }
 
     @Override
     public void render(float delta) {
+        world.step(delta, 6, 2);
 
-        //spawn ground or hole at right
-        groudSpawnTimer += delta;
-        if (groudSpawnTimer >= 0.28f){
-            groudSpawnTimer = 0;
-            // 90% for spawn ground at right
-            if (random.nextInt(100) + 1 <= 85){
-                grounds.add(new Ground(GDXRoot.WIDTH));
-            }else{
-                holes.add(new Hole(GDXRoot.WIDTH));
-            }
-        }
+//        //spawn ground or hole at right
+//        groudSpawnTimer += delta;
+//        if (groudSpawnTimer >= 0.28f){
+//            groudSpawnTimer = 0;
+//            // 90% for spawn ground at right
+//            if (random.nextInt(100) + 1 <= 85){
+//                grounds.add(new Ground(GDXRoot.WIDTH, world));
+//            }else{
+//                holes.add(new Hole(GDXRoot.WIDTH));
+//            }
+//        }
 
         //update ground to the left
         ArrayList<Ground> groundsToRemove = new ArrayList<Ground>();
@@ -116,6 +135,8 @@ public class GameScreen implements Screen {
         player.render(delta, game.batch);
 
         game.batch.end();
+
+        box2DDebugRenderer.render(world,game.cam.combined());
     }
 
 
