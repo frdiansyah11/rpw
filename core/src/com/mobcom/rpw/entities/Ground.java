@@ -15,15 +15,17 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Ground {
 
-    public static final int SPEED = 250;
-    public static final int GROUND_WIDTH = 80;
-    public static final int GROUND_HEIGHT = 240;
+    public static final int SPEED = 120;
+    public static final int GROUND_WIDTH = 120;
+    public static final int GROUND_HEIGHT = 120;
     public static final int GROUND_Y = 0;
+    public static final int BOX_WIDTH = 60;
+    public static final int BOX_HEIGHT = 120;
     private static Texture img;
 
     float x;
     Body body;
-
+    World world;
 
     public boolean remove = false;
 
@@ -33,18 +35,23 @@ public class Ground {
             img = new Texture("ground1.png");
 
         this.x = x;
+        this.world = world;
+
         makeBody(world);
     }
 
-    public void update(float delta){
-        x -= SPEED * delta;
+    public void update(){
+
         body.setLinearVelocity(-SPEED,0.0f);
-        if (x < -GROUND_WIDTH )
+        //System.out.println(body.getPosition().x);
+        if (body.getPosition().x < -BOX_WIDTH ){
             remove = true;
+            this.world.destroyBody(body);
+        }
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(img, x, GROUND_Y, GROUND_WIDTH, GROUND_HEIGHT);
+        batch.draw(img, body.getPosition().x - img.getWidth()/2.f, body.getPosition().y, GROUND_WIDTH, GROUND_HEIGHT);
     }
 
     private void makeBody(World world){
@@ -55,7 +62,7 @@ public class Ground {
         body = world.createBody(bodyDef);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(GROUND_WIDTH,GROUND_HEIGHT);
+        shape.setAsBox(BOX_WIDTH,GROUND_HEIGHT);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;

@@ -6,8 +6,8 @@ import com.mobcom.rpw.screens.GameScreen;
 import com.mobcom.rpw.tools.GameCamera;
 
 public class GDXRoot extends Game {
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
+	public static final int WIDTH = 960;
+	public static final int HEIGHT = 600;
 
 	public SpriteBatch batch;
 	public GameCamera cam;
